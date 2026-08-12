@@ -1,320 +1,94 @@
-:root {
-  --orange: #E8590C;
-  --orange-light: #F2772E;
-  --purple-dark: #3D1A3D;
-  --white: #FFFFFF;
-  --text-dark: #2B2B2B;
-  --text-muted: #6B6B6B;
+/* ============================================
+   RTL Overrides for THE CHEFZ – Working Hours Page
+   بيتحمّل دايمًا، لكن القواعد كلها شرطها [dir="rtl"]
+   فمش بتأثر على النسخة الإنجليزية خالص إلا لما اليوزر يبدّل اللغة
+   ============================================ */
+
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Tajawal', 'Segoe UI', Tahoma, Arial, sans-serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* زرار تبديل اللغة */
+.lang-toggle {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: white;
+  color: var(--purple-dark);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 30;
+  font-family: inherit;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
-  background: var(--white);
-  color: var(--text-dark);
+html[dir="rtl"] .lang-toggle {
+  right: auto;
+  left: 30px;
 }
 
 /* ===== HERO ===== */
-.hero {
-  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
-  padding: 20px 30px 40px;
-  position: relative;
-  overflow: visible;
+
+/* عكس اتجاه القطعة البيضاء المائلة أفقيًا عشان تتوافق مع صورة
+   الموبايل اللي هتظهر يمين لما اللغة تبقى عربي */
+html[dir="rtl"] .hero::after {
+  clip-path: polygon(100% 60%, 0 0, 0 100%, 100% 100%);
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -80px;
-  left: 0;
-  right: 0;
-  height: 150px;
-  background: white;
-  clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
-  z-index: 1;
-}
-
-.hero-logo {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.hero-logo img {
-  height: 90px;
-  background: white;
-  padding: 10px 24px;
-  border-radius: 6px;
-}
-
-.hero-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.phone-side {
-  position: relative;
-  flex-shrink: 0;
-  width: 380px;
-  margin-bottom: -150px;
-  z-index: 20;
-}
-
-.phone-image {
-  width: 100%;
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(202, 198, 198, 0.25);
-}
-
-.text-side {
-  flex: 1;
-  color: white;
-  padding-top: 60px;
-  padding-left: 80px;
-}
-
-.text-side h1 {
-  font-size: 40px;
-  line-height: 1.3;
-  font-weight: 800;
-}
-
-.highlight-text {
-  color: var(--purple-dark);
-}
-
-.divider {
-  width: 60px;
-  height: 3px;
-  background: white;
-  margin: 24px 0;
-  opacity: 0.7;
-}
-
-.hero-description {
-  font-size: 18px;
-  line-height: 1.6;
-  max-width: 420px;
-  opacity: 0.95;
+/* كانت padding-left عشان تبعد النص عن صورة الموبايل
+   في RTL الموبايل بيبقى يمين، فالمسافة لازم تبقى padding-right */
+html[dir="rtl"] .text-side {
+  padding-left: 0;
+  padding-right: 80px;
 }
 
 /* ===== FEATURES ===== */
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  padding: 30px 60px 70px;
-  max-width: 1100px;
-  margin: -130px auto 0;
-  margin-right: 60px;
-  position: relative;
-  z-index: 10;
+
+html[dir="rtl"] .features {
+  margin-left: 60px;
+  margin-right: auto;
 }
 
-.feature {
-  flex: 1;
-  text-align: center;
-  padding: 0 40px;
-  border-left: 1px solid #EEE;
-}
-
-.feature:first-child {
+html[dir="rtl"] .feature {
   border-left: none;
+  border-right: 1px solid #EEE;
 }
 
-.icon-circle {
-  width: 80px;
-  height: 80px;
-  background: #FBEAE0;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
-}
-
-.icon-circle img {
-  width: 40px;
-  height: 40px;
-}
-
-.feature h3 {
-  font-size: 19px;
-  margin-bottom: 10px;
-  color: var(--purple-dark);
-}
-
-.feature p {
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-/* ===== WORKING HOURS ===== */
-.working-hours {
-  text-align: center;
-  padding: 40px 60px 50px;
-  border-top: 1px solid #F0E5D8;
-}
-
-.working-hours-text {
-  color: var(--purple-dark);
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 1.6;
-  margin-bottom: 28px;
-}
-
-.hours-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.hours-btn {
-  background: #FBEAE0;
-  color: var(--purple-dark);
-  border: none;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: background 0.2s ease;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.hours-btn:hover {
-  background: #F2D5C2;
+html[dir="rtl"] .feature:first-child {
+  border-right: none;
 }
 
 /* ===== FOOTER ===== */
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 60px;
-  border-top: 1px solid #EEE;
-}
 
-.footer-brand {
-  font-weight: 800;
-  color: var(--orange);
-  margin-left: 10px;
-}
-
-.footer-tags {
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-.footer-right {
-  display: flex;
-  gap: 10px;
-}
-
-.icon-button {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.icon-button.mail {
-  background: var(--orange);
-  color: white;
-}
-
-.icon-button.whatsapp {
-  background: #25D366;
-  color: white;
+html[dir="rtl"] .footer-brand {
+  margin-left: 0;
+  margin-right: 10px;
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .hero {
-    padding: 20px 16px 40px;
+  .lang-toggle {
+    position: static;
+    display: block;
+    margin: 0 auto 16px;
   }
 
-  .hero::after {
-    display: none;
+  html[dir="rtl"] .lang-toggle {
+    left: auto;
   }
 
-  .hero-content {
-    flex-direction: column;
-    align-items: center;
+  html[dir="rtl"] .text-side {
+    padding-right: 0;
   }
 
-  .phone-side {
-    width: 100%;
-    max-width: 280px;
-    margin-bottom: 20px !important;
-    z-index: 20;
+  html[dir="rtl"] .feature {
+    border-right: none;
   }
 
-  .text-side {
-    text-align: center;
-    padding-top: 10px;
-    padding-left: 0;
-  }
-
-  .text-side h1 {
-    font-size: 24px;
-  }
-
-  .hero-description {
-    font-size: 14px;
-    max-width: 100%;
-  }
-
-  .divider {
-    margin: 16px auto;
-  }
-
-  .features {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-    margin: 30px auto 0 !important;
-    padding: 20px;
-  }
-
-  .feature {
-    border-left: none;
-    padding: 0 10px;
-    width: 100%;
-  }
-
-  .working-hours {
-    padding: 30px 20px 40px;
-  }
-
-  .hours-buttons {
-    gap: 12px;
-  }
-
-  .hours-btn {
-    padding: 12px 18px;
-    font-size: 13px;
-  }
-
-  .footer {
-    flex-direction: column;
-    gap: 16px;
-    padding: 24px 20px;
-    text-align: center;
+  html[dir="rtl"] .footer-brand {
+    margin-right: 0;
   }
 }

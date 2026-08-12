@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TheChefz</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-rtl.css">
 </head>
 <body>
 
   <section class="hero">
+    <button id="lang-toggle" class="lang-toggle" onclick="toggleLanguage()">العربية</button>
+
     <div class="hero-logo">
       <img src="logo.png" alt="THE CHEFZ">
     </div>
@@ -16,13 +19,16 @@
     <div class="hero-content">
 
       <div class="phone-side">
-        <img src="phone-mockup.png" alt="معاينة التطبيق" class="phone-image">
+        <img src="phone-mockup.png" alt="App preview" class="phone-image">
       </div>
 
       <div class="text-side">
-        <h1>Welcome to THE CHEFZ<br><span class="highlight-text">Working Hours Update Site</span></h1>
+        <h1>
+          <span data-en="Welcome to THE CHEFZ" data-ar="مرحبًا بكم في ذا شفز">Welcome to THE CHEFZ</span><br>
+          <span class="highlight-text" data-en="Working Hours Update Site" data-ar="موقع تحديث ساعات العمل">Working Hours Update Site</span>
+        </h1>
         <div class="divider"></div>
-        <p class="hero-description">Get real-time updates and insights on working hours to manage your operations better.</p>
+        <p class="hero-description" data-en="Get real-time updates and insights on working hours to manage your operations better." data-ar="احصل على تحديثات ورؤى فورية حول ساعات العمل لإدارة عملياتك بشكل أفضل.">Get real-time updates and insights on working hours to manage your operations better.</p>
       </div>
 
     </div>
@@ -33,39 +39,41 @@
       <div class="icon-circle">
         <img src="icon-clock.png" alt="">
       </div>
-      <h3>Real-time Updates</h3>
-      <p>Stay informed with the latest working hours.</p>
+      <h3 data-en="Real-time Updates" data-ar="تحديثات فورية">Real-time Updates</h3>
+      <p data-en="Stay informed with the latest working hours." data-ar="ابقَ على اطلاع بأحدث ساعات العمل.">Stay informed with the latest working hours.</p>
     </div>
 
     <div class="feature">
       <div class="icon-circle">
         <img src="icon-chart.png" alt="">
       </div>
-      <h3>Smart Insights</h3>
-      <p>Make data-driven decisions to grow your business.</p>
+      <h3 data-en="Smart Insights" data-ar="رؤى ذكية">Smart Insights</h3>
+      <p data-en="Make data-driven decisions to grow your business." data-ar="اتخذ قرارات مبنية على البيانات لتنمية عملك.">Make data-driven decisions to grow your business.</p>
     </div>
 
     <div class="feature">
       <div class="icon-circle">
         <img src="icon-gear.png" alt="">
       </div>
-      <h3>Operational Efficiency</h3>
-      <p>Optimize your schedule and improve productivity.</p>
+      <h3 data-en="Operational Efficiency" data-ar="كفاءة تشغيلية">Operational Efficiency</h3>
+      <p data-en="Optimize your schedule and improve productivity." data-ar="حسّن جدولك وزد من إنتاجيتك.">Optimize your schedule and improve productivity.</p>
     </div>
   </section>
 
   <section class="working-hours">
-    <p class="working-hours-text">You can inform us with your NEW Working Hours<br>or<br>Learn How to Change the Working Hours by YOURSELF</p>
+    <p class="working-hours-text"
+       data-en="You can inform us with your NEW Working Hours<br>or<br>Learn How to Change the Working Hours by YOURSELF"
+       data-ar="يمكنك إبلاغنا بساعات عملك الجديدة<br>أو<br>تعلّم كيفية تغيير ساعات العمل بنفسك">You can inform us with your NEW Working Hours<br>or<br>Learn How to Change the Working Hours by YOURSELF</p>
     <div class="hours-buttons">
-      <a href="https://script.google.com/macros/s/AKfycbxfBxRaME2PO6NbaDZwZyN9RihlJD5qYaAQy1gt3QeRufx_mQb3ezLmayg8uYraQg4T/exec" target="_blank" class="hours-btn">Inform Us with New WHs</a>
-      <a href="#" target="_blank" class="hours-btn">Learn How to Change WHs</a>
+      <a href="https://script.google.com/macros/s/AKfycbxfBxRaME2PO6NbaDZwZyN9RihlJD5qYaAQy1gt3QeRufx_mQb3ezLmayg8uYraQg4T/exec" target="_blank" class="hours-btn" data-en="Inform Us with New WHs" data-ar="إبلاغنا بساعات العمل الجديدة">Inform Us with New WHs</a>
+      <a href="#" target="_blank" class="hours-btn" data-en="Learn How to Change WHs" data-ar="تعلّم كيفية تغيير ساعات العمل">Learn How to Change WHs</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer-left">
       <span class="footer-brand">THE CHEFZ</span>
-      <span class="footer-tags">Insight &bull; Data &bull; Growth</span>
+      <span class="footer-tags" data-en="Insight &bull; Data &bull; Growth" data-ar="رؤية &bull; بيانات &bull; نمو">Insight &bull; Data &bull; Growth</span>
     </div>
     <div class="footer-right">
       <a href="mailto:support@thechefz.co" class="icon-button mail">✉</a>
@@ -74,6 +82,22 @@
       </a>
     </div>
   </footer>
+
+  <script>
+    function toggleLanguage() {
+      const html = document.getElementById('html-root');
+      const btn = document.getElementById('lang-toggle');
+      const goingToArabic = html.getAttribute('dir') !== 'rtl';
+
+      html.setAttribute('dir', goingToArabic ? 'rtl' : 'ltr');
+      html.setAttribute('lang', goingToArabic ? 'ar' : 'en');
+      btn.textContent = goingToArabic ? 'English' : 'العربية';
+
+      document.querySelectorAll('[data-en]').forEach(function (el) {
+        el.innerHTML = goingToArabic ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+      });
+    }
+  </script>
 
 </body>
 </html>
